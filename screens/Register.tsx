@@ -12,26 +12,26 @@ const Register = () => {
 
     const register = () => {
         createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-              // Registered
-              const user = userCredential.user;
-              updateProfile(user, {
-                  displayName: name,
-                  photoURL: avatar ? avatar : 'https://gravatar.com/avatar/94d45dbdba988afacf30d916e7aaad69?s=200&d=mp&r=x',
-              })
-              .then(() => {
-                  alert('Registered, please login.');
-              })
-              .catch((error) => {
-                  alert(error.message);
-              })
-          })
-          .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              alert(errorMessage);
-          });
-      }
+            .then((userCredential) => {
+                // Registered
+                const user = userCredential.user;
+                updateProfile(user, {
+                    displayName: name,
+                    photoURL: avatar ? avatar : 'https://gravatar.com/avatar/94d45dbdba988afacf30d916e7aaad69?s=200&d=mp&r=x',
+                })
+                    .then(() => {
+                        alert('Registered, please login.');
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    })
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage);
+            });
+    }
 
     return (
         <View style={styles.container}>
@@ -56,7 +56,7 @@ const Register = () => {
             <Input
                 placeholder='Enter your image url'
                 label='Profile Picture'
-                value = {avatar}
+                value={avatar}
                 onChangeText={text => setAvatar(text)}
             />
             <Button title='register' onPress={register} style={styles.button} />
